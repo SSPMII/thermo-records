@@ -76,3 +76,8 @@ yarn preview
 进行 build
 
 按提示执行 `node .output/server/index.mjs`
+
+# 预览
+![homepage](README\homepage.jpeg)
+
+![pageTest](README\pageTest.jpeg)
