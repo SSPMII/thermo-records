@@ -1,10 +1,11 @@
-# Nuxt 3 Minimal Starter
+# 热电偶记录的一个小网页
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+- 使用 Nuxt 3， prisma， tailwindcss，以及 element-plus，具体看 package.json
+- 数据库使用 mysql，具体见 prisma 的配置文件 schema.prisma
+- 测试的两组数据，在搜索框中输入 test 或 test2
+## 安装依赖
 
-## Setup
-
-Make sure to install the dependencies:
+基本和 Nuxt 官网一样
 
 ```bash
 # npm
@@ -17,9 +18,9 @@ pnpm install
 yarn install
 ```
 
-## Development Server
+## 开发服务
 
-Start the development server on `http://localhost:3000`:
+服务器地址 `http://localhost:3000`:
 
 ```bash
 # npm
@@ -32,9 +33,9 @@ pnpm run dev
 yarn dev
 ```
 
-## Production
+## 生成正式生产环境文件
 
-Build the application for production:
+使用 Build
 
 ```bash
 # npm
@@ -47,7 +48,7 @@ pnpm run build
 yarn build
 ```
 
-Locally preview production build:
+本地预览
 
 ```bash
 # npm
@@ -59,5 +60,3 @@ pnpm run preview
 # yarn
 yarn preview
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
