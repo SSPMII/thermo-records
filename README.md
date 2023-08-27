@@ -18,6 +18,14 @@ pnpm install
 yarn install
 ```
 
+## prisma 客户端
+
+注意每次更改目录后需要重新生成 prisma 客户端
+
+```bash
+npx prisma generate
+```
+
 ## 开发服务
 
 服务器地址 `http://localhost:3000`:
