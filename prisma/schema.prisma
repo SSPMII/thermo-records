@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model thermodata {
+  id        Int     @id @default(autoincrement()) @db.UnsignedInt
+  usetime   Int     @db.UnsignedInt
+  name      String  @db.VarChar(255)
+  lupihao   String  @db.VarChar(255)
+  operator  String  @db.VarChar(255)
+  inspector String  @db.VarChar(255)
+  memo      String? @db.VarChar(255)
+}
