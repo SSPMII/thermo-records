@@ -41,7 +41,7 @@ pnpm run dev
 yarn dev
 ```
 
-## 生成正式生产环境文件
+## 生成生产环境文件
 
 使用 Build
 
@@ -68,3 +68,11 @@ pnpm run preview
 # yarn
 yarn preview
 ```
+
+## 部署
+
+更改 `\server\api\records\[name].get.js` 中的 `DATABASE_URL` 为正式的数据库地址
+
+进行 build
+
+按提示执行 `node .output/server/index.mjs`
