@@ -6,30 +6,11 @@
 
 ## 安装依赖
 
-在安装依赖前，将prisma文件夹改个名字，否则安装prisma时会自动加载schema.prisma，然后卡很久
-
 其它基本和 Nuxt 官网一样
 
 ```bash
 # npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-```
-
-## prisma 客户端
-
-将 prisma 文件夹改回，重新生成 prisma 客户端
-
-```bash
-npx prisma generate
-```
-
-## 开发服务
 
 服务器地址 `http://localhost:3000`:
 
@@ -37,11 +18,6 @@ npx prisma generate
 # npm
 npm run dev
 
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
 ```
 
 ## 生成生产环境文件
@@ -52,11 +28,6 @@ yarn dev
 # npm
 npm run build
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
 ```
 
 本地预览
@@ -65,11 +36,6 @@ yarn build
 # npm
 npm run preview
 
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
 ```
 
 ## 部署
