@@ -4,6 +4,7 @@ const thermoName = route.params.ThermoName
 
 const props = defineProps(['thermo'])
 const newRecord = reactive({
+    id: 0,
     name: thermoName,
     usetime: props.thermo.length + 1,
     lupihao: '',
@@ -12,20 +13,60 @@ const newRecord = reactive({
     memo: ''
 })
 
+watch(gData_Records, () => {
+    newRecord.id = gData_Records.id
+    newRecord.name = gData_Records.name
+    newRecord.usetime = gData_Records.usetime
+    newRecord.lupihao = gData_Records.lupihao
+    newRecord.operator = gData_Records.operator
+    newRecord.inspector = gData_Records.inspector
+    newRecord.memo = gData_Records.memo
+})
+
 const handleSubmit = async () => {
-    try {
-        await $fetch(`/api/records/${route.params.ThermoName}`, {
-            method: 'POST',
-            body: newRecord
+    if (!newRecord.lupihao) {
+        ElMessageBox.alert('请输入炉批号', '错误', {
+            confirmButtonText: 'OK'
         })
-        location.reload(); // 刷新页面
-    } catch (error) {
-        showError("😱 Oh no, an error has been thrown.")
+        return
+    } else if (!newRecord.operator) {
+        ElMessageBox.alert('请输入操作者姓名', '错误', {
+            confirmButtonText: 'OK'
+        })
+        return
+    } else if (newRecord.usetime == props.thermo.length + 1) {
+        try {
+            await $fetch(`/api/records/create/${route.params.ThermoName}`, {
+                method: 'POST',
+                body: newRecord
+            })
+            location.reload(); // 刷新页面
+        } catch (error) {
+            showError("😱 Oh no, an error has been thrown.")
+        }
+    } else {
+        try {
+            await $fetch(`/api/records/update/${route.params.ThermoName}`, {
+                method: 'POST',
+                body: newRecord
+            })
+            location.reload(); // 刷新页面
+        } catch (error) {
+            showError("😱 Oh no, an error has been thrown.")
+        }
     }
 }
 
 </script>
 <template>
+    <el-row class="mt-10">
+        <el-col :span="2">
+            <span>使用次数：</span>
+        </el-col>
+        <el-col :span="8">
+            <el-input v-model="newRecord.usetime" disabled />
+        </el-col>
+    </el-row>
     <el-row class="mt-10">
         <el-col :span="2">
             <span>炉批号：</span>
