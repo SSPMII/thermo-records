@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 // 全局的数据
 export const gData_Thermo = {
     name: '',       // 热电偶名称
@@ -13,4 +13,8 @@ export const gData_Records = reactive({
     operator: '',
     inspector: '',
     memo: ''
+})
+
+export const gData_User = reactive({
+    level: 'viewer'   // 用户等级 viewer operator inspector
 })

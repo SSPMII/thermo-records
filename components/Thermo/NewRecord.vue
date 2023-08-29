@@ -13,6 +13,7 @@ const newRecord = reactive({
     memo: ''
 })
 
+// 监控 gData_Records, 即在table 中点击某一行
 watch(gData_Records, () => {
     newRecord.id = gData_Records.id
     newRecord.name = gData_Records.name
@@ -57,6 +58,25 @@ const handleSubmit = async () => {
     }
 }
 
+const isDisabled_viewer = computed(() => {
+    if (gData_User.level == 'viewer') {
+        return true
+    }
+    return false
+})
+const isDisabled_operator = computed(() => {
+    if (gData_User.level == 'operator' && newRecord.usetime > props.thermo.length) {
+        return false
+    }
+    return true
+})
+const isDisabled_inspector = computed(() => {
+    if (gData_User.level == 'inspector') {
+        return false
+    }
+    return true
+})
+
 </script>
 <template>
     <el-row class="mt-10">
@@ -72,7 +92,7 @@ const handleSubmit = async () => {
             <span>炉批号：</span>
         </el-col>
         <el-col :span="8">
-            <el-input v-model="newRecord.lupihao" placeholder="请输入炉批号" />
+            <el-input v-model="newRecord.lupihao" placeholder="请输入炉批号" :disabled=isDisabled_operator />
         </el-col>
     </el-row>
     <el-row class="mt-5">
@@ -80,7 +100,7 @@ const handleSubmit = async () => {
             <span>操作者：</span>
         </el-col>
         <el-col :span="8">
-            <el-input v-model="newRecord.operator" placeholder="请输入姓名或工号" />
+            <el-input v-model="newRecord.operator" placeholder="请输入姓名或工号" :disabled=isDisabled_operator />
         </el-col>
     </el-row>
     <el-row class="mt-5">
@@ -88,18 +108,20 @@ const handleSubmit = async () => {
             <span>检验人：</span>
         </el-col>
         <el-col :span="8">
-            <el-input v-model="newRecord.inspector" placeholder="请输入姓名或工号" />
+            <el-input v-model="newRecord.inspector" placeholder="请输入姓名或工号" :disabled=isDisabled_inspector />
         </el-col>
     </el-row>
-    <el-row class="mt-5">
+    <el-row class="mt-5 mb-10">
         <el-col :span="2">
             <span>异常记录：</span>
         </el-col>
         <el-col :span="8">
-            <el-input type="textarea" v-model="newRecord.memo" />
+            <el-input type="textarea" v-model="newRecord.memo" :disabled=isDisabled_viewer />
         </el-col>
         <el-col :span="2">
             <el-button type="success" class="ml-10" @click="handleSubmit">提交</el-button>
         </el-col>
     </el-row>
+
+    <el-button @click="gData_count.submit += 1">ceshi</el-button>
 </template>

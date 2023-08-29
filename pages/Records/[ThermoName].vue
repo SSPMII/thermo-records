@@ -1,8 +1,8 @@
 <script setup>
 // 根据搜索的名字获取数据
 const route = useRoute()
-
 const { data } = await useFetch(`/api/records/${route.params.ThermoName}`)
+
 const thermo = data
 
 let isShow = true
@@ -38,6 +38,9 @@ if (thermo.value.length == 0) {
             <el-divider />
 
         </div>
+
+        <Login />
+
         <ThermoNewRecord :thermo="thermo" />
     </div>
 </template>

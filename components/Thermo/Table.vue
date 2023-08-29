@@ -2,7 +2,7 @@
 const props = defineProps(['thermo'])
 
 const handleCurrentChange = (val) => {
-
+    // 点击某一行，数据自动写入全局数据中
     gData_Records.id = val.id
     gData_Records.name = val.name
     gData_Records.usetime = val.usetime
