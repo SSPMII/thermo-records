@@ -26,8 +26,8 @@ watch(gData_Records, () => {
 
 const handleNewClick = () => {
     newRecord.id = 0
-    newRecord.name = thermoName,
-        newRecord.usetime = props.thermo.length + 1
+    newRecord.name = thermoName
+    newRecord.usetime = props.thermo.length + 1
     newRecord.lupihao = ''
     newRecord.operator = ''
     newRecord.inspector = ''
@@ -68,7 +68,13 @@ const handleSubmit = async () => {
     }
 }
 
-const isShowNewRecordButton = ref(false)
+const isShowNewRecordButton = computed(() => {
+    if (gData_User.level == '操作者') {
+        return true
+    }
+    return false
+})
+
 const isDisabled_viewer = computed(() => {
     if (gData_User.level == '游客') {
         return true
@@ -77,7 +83,6 @@ const isDisabled_viewer = computed(() => {
 })
 const isDisabled_operator = computed(() => {
     if (gData_User.level == '操作者' && newRecord.usetime > props.thermo.length) {
-        isShowNewRecordButton.value = true
         return false
     }
     return true
@@ -92,8 +97,8 @@ const isDisabled_inspector = computed(() => {
 </script>
 <template>
     <div>
-        <el-row class="mt-5">
-            <el-col :span="2" v-if="isShowNewRecordButton">
+        <el-row class="mt-5" v-show="isShowNewRecordButton">
+            <el-col :span="2">
                 <el-button @click="handleNewClick">新增记录</el-button>
             </el-col>
         </el-row>
