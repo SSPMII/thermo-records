@@ -12,6 +12,11 @@ export default defineEventHandler((event) => {
     return prisma.thermodata.findMany({
         where: {
             name: name // name是数据库中的字段，查找数据库中name为name的记录
-        }
+        },
+        orderBy: [
+            {
+                id: 'asc',
+            }
+        ]
     })
 })

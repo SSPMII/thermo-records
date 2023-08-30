@@ -16,7 +16,8 @@ const handleCurrentChange = (val) => {
 <template>
     <div class="overflow-x-auto">
         <client-only>
-            <el-table :data="thermo" style="width: 100%" highlight-current-row @current-change="handleCurrentChange">
+            <el-table :data="thermo" style="width: 100%" highlight-current-row @current-change="handleCurrentChange"
+                ref="singleTableRef">
                 <el-table-column prop="usetime" label="使用次数" width="180" />
                 <el-table-column prop="lupihao" label="炉批号" width="180" />
                 <el-table-column prop="operator" label="操作者" width="180" />

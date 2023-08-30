@@ -16,5 +16,5 @@ export const gData_Records = reactive({
 })
 
 export const gData_User = reactive({
-    level: 'viewer'   // 用户等级 viewer operator inspector
+    level: '游客'   // 用户等级
 })
