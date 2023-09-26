@@ -15,4 +15,16 @@ export default defineEventHandler(async (event) => {
             memo
         }
     })
+    await prisma.thermo.upsert({
+        where: {
+            name: name
+        },
+        update: {
+            name: name
+        },
+        create: {
+            name: name,
+            state: true
+        }
+    })
 })

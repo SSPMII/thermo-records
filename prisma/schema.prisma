@@ -17,3 +17,8 @@ model thermodata {
   inspector String  @db.VarChar(255)
   memo      String? @db.VarChar(255)
 }
+
+model thermo {
+  name  String  @id @db.VarChar(255)
+  state Boolean
+}

@@ -10,6 +10,29 @@ if (thermo.value.length == 0) {
     isShow = false
 }
 
+const thermoState = await useFetch(`/api/thermo/${route.params.ThermoName}`)
+
+let isActive = true
+if (thermoState.data.value[0]) {
+    isActive = thermoState.data.value[0].state
+}
+
+const thermoName = route.params.ThermoName
+const handleDeactivateThermo = async () => {
+    try {
+        await $fetch(`/api/thermo/${route.params.ThermoName}`, {
+            method: 'POST',
+            body: {
+                name: thermoName,
+                state: false
+            }
+        })
+        location.reload();   // 刷新数据
+    } catch (error) {
+        showError("😱 Oh no, an error has been thrown.")
+    }
+}
+
 </script>
 <template>
     <div class="container mx-auto w-3/5">
@@ -25,7 +48,11 @@ if (thermo.value.length == 0) {
             <h1 class="text-lg">热电偶使用情况记录表</h1>
         </div>
 
-        <div class="text-5xl mb-5 ml-5">{{ route.params.ThermoName }}</div>
+        <div class="text-5xl mb-5 ml-5">
+            {{ route.params.ThermoName }}
+            <el-button v-if="isActive" type="danger" @click="handleDeactivateThermo">失效</el-button>
+            <el-tag v-if="!isActive" type="danger" size="large">当前已失效</el-tag>
+        </div>
 
         <div v-if="!isShow">
             <p class="ml-5">对不起，该热电偶不存在，请新建一条记录</p>
